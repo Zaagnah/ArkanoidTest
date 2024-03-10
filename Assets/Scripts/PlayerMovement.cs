@@ -15,8 +15,8 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        //float x = Input.GetAxis("Horizontal") * Time.fixedDeltaTime * speed;
-        float x = joystick.Horizontal;
+        float x = Input.GetAxis("Horizontal") * Time.fixedDeltaTime * speed;
+        //float x = joystick.Horizontal;
         Vector2 newPosition = rig.position + Vector2.right * x;
         newPosition.x = Mathf.Clamp(newPosition.x, -mapWidth, mapWidth);
         rig.MovePosition(newPosition);

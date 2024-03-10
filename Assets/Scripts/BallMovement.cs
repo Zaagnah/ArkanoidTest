@@ -4,25 +4,17 @@ using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
-
-
     Rigidbody2D ArkBallRB;
     [SerializeField]
     float speed = 1f;
     [SerializeField]
     float maxSpeed = 1000f;
-
-    
-
-
-   
+ 
     private void Start()                                        
     {
         ArkBallRB = GetComponent<Rigidbody2D>();
         Vector2 vec = new Vector2(Random.Range(-5f, 5f), Random.Range(2f, 4f) );
-        ArkBallRB.velocity = vec * speed ;
-   
-        
+        ArkBallRB.velocity = vec * speed ;       
     }
 
     private void FixedUpdate()
@@ -35,8 +27,11 @@ public class BallMovement : MonoBehaviour
         if(ArkBallRB.velocity.magnitude > maxSpeed)
         {
             ArkBallRB.velocity = ArkBallRB.velocity.normalized * maxSpeed;
-        }
-       
+        } 
+         else if(ArkBallRB.velocity.magnitude < maxSpeed)
+        {
+            ArkBallRB.velocity = ArkBallRB.velocity.normalized * maxSpeed;
+        }      
     }
 
     void DestroyBall()
@@ -50,8 +45,4 @@ public class BallMovement : MonoBehaviour
         Destroy(gameObject);
         FindObjectOfType<GameManager>().Restartlvl();
     }
-
-
-
-
 }
